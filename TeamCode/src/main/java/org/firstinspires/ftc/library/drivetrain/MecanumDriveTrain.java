@@ -64,6 +64,14 @@ public class MecanumDriveTrain extends AbstractDriveTrain
         float leftX = this.robot.gamepad1.left_stick_x;
         float rx = this.robot.gamepad1.right_stick_x;
 
+        if (this.getConfig().invertLeftX) {
+            leftX = leftX * (float) -1;
+        }
+
+        if (this.getConfig().invertRightX) {
+            rx = rx * (float) -1;
+        }
+
         Point newPoint = GridUtils.rotatePointByDegrees(leftX,leftY,yaw);
         double x = newPoint.getX();
         double y = newPoint.getY();

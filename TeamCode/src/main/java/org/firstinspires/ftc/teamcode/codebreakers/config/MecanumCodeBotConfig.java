@@ -39,6 +39,10 @@ public class MecanumCodeBotConfig extends MecanumDriveTrainConfig {
 
         this.incrementalDeceleration = false;
 
+        this.invertRightX = false;
+
+        this.invertLeftX = true;
+
     }
 
 }
