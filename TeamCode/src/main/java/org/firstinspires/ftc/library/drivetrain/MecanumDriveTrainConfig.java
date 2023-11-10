@@ -39,4 +39,9 @@ public class MecanumDriveTrainConfig extends AbstractDriveTrainConfig
      */
     public boolean invertLeftX = false;
 
+    /**
+     */
+    public boolean invertLeftY = false;
+
+
 }

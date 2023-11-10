@@ -43,6 +43,8 @@ public class MecanumCodeBotConfig extends MecanumDriveTrainConfig {
 
         this.invertLeftX = true;
 
+        this.invertLeftY = false;
+
     }
 
 }

@@ -72,6 +72,10 @@ public class MecanumDriveTrain extends AbstractDriveTrain
             rx = rx * (float) -1;
         }
 
+        if (this.getConfig().invertLeftY) {
+            leftY = leftY * (float) -1;
+        }
+
         Point newPoint = GridUtils.rotatePointByDegrees(leftX,leftY,yaw);
         double x = newPoint.getX();
         double y = newPoint.getY();
