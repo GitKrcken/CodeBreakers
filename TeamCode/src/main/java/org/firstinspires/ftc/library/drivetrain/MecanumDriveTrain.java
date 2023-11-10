@@ -58,9 +58,9 @@ public class MecanumDriveTrain extends AbstractDriveTrain
 
     public void run ()
     {
-        double yaw = -(this.robot.getYaw() + getConfig().yawOffset);
+        double yaw = this.robot.getYaw() + getConfig().yawOffset;
 
-        float leftY = -this.robot.gamepad1.left_stick_y;
+        float leftY = this.robot.gamepad1.left_stick_y;
         float leftX = this.robot.gamepad1.left_stick_x;
         float rx = this.robot.gamepad1.right_stick_x;
 
@@ -84,23 +84,13 @@ public class MecanumDriveTrain extends AbstractDriveTrain
         // This ensures all the powers maintain the same ratio,
         // but only if at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-        double frontLeftPower = (y + x + rx) / denominator;
+
+        double frontLeftPower  = (y + x + rx) / denominator;
         double backLeftPower   = (y - x + rx) / denominator;
         double frontRightPower = (y - x - rx) / denominator;
         double backRightPower  = (y + x - rx) / denominator;
 
-//        double r = Math.hypot(x,y);
-//        double robotAngle = Math.atan2(y,x) - Math.PI / 4;
-//        double rightX = rx;
-//        final double v1 = r * Math.cos(robotAngle) + rightX;
-//        final double v2 = r * Math.sin(robotAngle) - rightX;
-//        final double v3 = r * Math.sin(robotAngle) + rightX;
-//        final double v4 = r * Math.cos(robotAngle) - rightX;
-
-//        leftFront.setPower(v1);
-//        rightFront.setPower(v2);
-//        leftRear.setPower(v3)
-//        rightRear.setPower(v4);
+        //----------------------------------------------------------------------
 
         // button controls
         if (robot.gamepad1.b) {

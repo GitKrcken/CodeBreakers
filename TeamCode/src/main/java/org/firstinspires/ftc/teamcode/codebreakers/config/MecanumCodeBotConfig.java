@@ -30,8 +30,6 @@ public class MecanumCodeBotConfig extends MecanumDriveTrainConfig {
 
         this.maxPower = 0.6;
 
-        this.yawOffset = -90;
-
         this.leftFrontMotorDirection = DcMotor.Direction.REVERSE;
         this.rightFrontMotorDirection = DcMotor.Direction.FORWARD;
         this.rightRearMotorDirection = DcMotor.Direction.FORWARD;
@@ -39,9 +37,11 @@ public class MecanumCodeBotConfig extends MecanumDriveTrainConfig {
 
         this.incrementalDeceleration = false;
 
+        this.yawOffset = -90;
+
         this.invertRightX = false;
 
-        this.invertLeftX = true;
+        this.invertLeftX = false;
 
         this.invertLeftY = false;
 

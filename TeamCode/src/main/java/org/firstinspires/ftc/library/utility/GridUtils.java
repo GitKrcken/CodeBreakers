@@ -23,20 +23,6 @@ public class GridUtils
     @NonNull
     public static Point rotatePointByDegrees (double x, double y, double degrees)
     {
-//        Noah's attempt
-//        double x1 = 0;
-//        double y1 = 0;
-//
-//        double x2 = x;
-//        double y2 = y;
-//
-//        double r = Math.sqrt( (x2 - x1) * (x2 -x1) + (y2 - y1) * (y2 - y1) );
-//
-//        double radians = degrees * (Math.PI / (double)180);
-//
-//        double x3 = r * Math.cos(radians);
-//        double y3 = r * Math.sin(radians);
-
         double x1 = 0;
         double y1 = 0;
 
@@ -49,7 +35,6 @@ public class GridUtils
         double y3 = Math.sin(radians) * (x2 - x1) + Math.cos(radians) * (y2 - y1) + y1;
 
         return new Point(roundDecimal(x3,3), roundDecimal(y3, 3));
-        //return rotateLineByDegrees(0,0, x, y, degrees);
     }
 
     /**

@@ -31,6 +31,7 @@ public class CodeBot extends IsaacBot {
         super.initBot();
 
         this.pixelCatcher = new PixelCatcher(this.pixelCatcherConfig);
+        this.pixelCatcher.init();
     }
 
     /**
@@ -38,8 +39,6 @@ public class CodeBot extends IsaacBot {
      */
     public void go () {
         super.go();
-
-        this.pixelCatcher.init();
     }
 
     /**
