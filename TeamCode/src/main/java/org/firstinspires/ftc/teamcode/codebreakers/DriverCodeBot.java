@@ -51,6 +51,10 @@ public class DriverCodeBot extends CodeBot {
         super.run();
 
         driveTrain.run();
+        driveTrain.run();
+        this.pixelCatcher.run();
+        driveTrain.run();
+        driveTrain.run();
     }
 
 }

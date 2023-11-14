@@ -46,8 +46,6 @@ public class CodeBot extends IsaacBot {
      */
     public void run () {
         super.run();
-
-        this.pixelCatcher.run();
     }
 
 }
