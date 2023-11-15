@@ -37,7 +37,7 @@ public class MecanumCodeBotConfig extends MecanumDriveTrainConfig {
 
         this.incrementalDeceleration = false;
 
-        this.yawOffset = -90;
+        this.yawOffset = 0;
 
         this.invertRightX = false;
 

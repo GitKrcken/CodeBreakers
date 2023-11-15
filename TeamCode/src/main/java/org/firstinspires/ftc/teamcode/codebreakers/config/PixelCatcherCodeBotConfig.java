@@ -8,11 +8,11 @@ public class PixelCatcherCodeBotConfig extends PixelCatcherConfig {
     public PixelCatcherCodeBotConfig(){
         this.leftArmServoName = "leftPixelServo";
 
-        this.leftArmServoOpenedPos = 0.542;
+        this.leftArmServoOpenedPos = 0.500;
 
-        this.leftArmServoClosedPos = 0.176;
+        this.leftArmServoClosedPos = 0.164;
 
-        this.leftArmServoInitPos = 0.176;
+        this.leftArmServoInitPos = 0.164;
 
         this.leftArmIntiPos = PixelCatcher.ArmPosition.CLOSED;
 

@@ -30,6 +30,7 @@ public class AutoCodeBot extends CodeBot {
        super();
 
        this.driveTrainConfig = new SimpleDriveTrainCodeBotConfig(this);
+       this.setImuName(driveTrainConfig.imuName);
     }
 
     /**
@@ -41,6 +42,7 @@ public class AutoCodeBot extends CodeBot {
 
         this.driveTrain = new SimpleDriveTrain(this.driveTrainConfig);
         this.driveTrain.init();
+
     }
 
     /**
@@ -49,7 +51,7 @@ public class AutoCodeBot extends CodeBot {
     public void go () {
         super.go();
 
-        this.driveTrain.forward(0.2, 0.3, 10, Units.Centimeters);
+        this.driveTrain.forward(0.1, 0.1, 10, Units.Centimeters);
     }
 
     /**

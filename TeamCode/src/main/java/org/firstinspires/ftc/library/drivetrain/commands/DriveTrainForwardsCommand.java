@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.library.drivetrain.commands;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.library.drivetrain.SimpleDriveTrain;

@@ -34,9 +34,6 @@ public class SimpleDriveTrain extends AbstractDriveTrain
     public SimpleDriveTrain(SimpleDriveTrainConfig config)
     {
         super(config);
-
-        telemetry.addLine("Imu Name: " + config.imuName);
-        telemetry.update();
     }
 
     /**

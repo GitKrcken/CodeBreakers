@@ -58,9 +58,9 @@ public class MecanumDriveTrain extends AbstractDriveTrain
 
     public void run ()
     {
-        double yaw = this.robot.getYaw() + getConfig().yawOffset;
+        double yaw = -(this.robot.getYaw() + getConfig().yawOffset);
 
-        float leftY = this.robot.gamepad1.left_stick_y;
+        float leftY = -this.robot.gamepad1.left_stick_y;
         float leftX = this.robot.gamepad1.left_stick_x;
         float rx = this.robot.gamepad1.right_stick_x;
 

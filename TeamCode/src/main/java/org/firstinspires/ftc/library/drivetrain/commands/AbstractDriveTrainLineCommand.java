@@ -83,8 +83,37 @@ public abstract class AbstractDriveTrainLineCommand extends AbstractSynchronousC
 
             if (this.driveTrain.getConfig().debug = true) {
                 this.driveTrain.getRobot().telemetry.addData("Running to",  " %7d", tics);
+
                 this.driveTrain.getRobot().telemetry.addData("Left Front Currently at",  " at %7d", this.driveTrain.getLeftFrontMotor().getCurrentPosition());
                 this.driveTrain.getRobot().telemetry.addData("Left Front  Motor Power: ", " %f", this.driveTrain.getLeftFrontMotor().getPower());
+                this.driveTrain.getRobot().telemetry.addLine("Left Front  Direction: " + this.driveTrain.getLeftFrontMotor().getDirection());
+                this.driveTrain.getRobot().telemetry.addLine("Left Front Run Using Encoder: " + this.driveTrain.getLeftFrontMotor().getMode());
+
+                this.driveTrain.getRobot().telemetry.addLine();
+
+                this.driveTrain.getRobot().telemetry.addData("Right Front Currently at",  " at %7d", this.driveTrain.getRightFrontMotor().getCurrentPosition());
+                this.driveTrain.getRobot().telemetry.addData("Right Front  Motor Power: ", " %f", this.driveTrain.getRightFrontMotor().getPower());
+                this.driveTrain.getRobot().telemetry.addLine("Right Front  Direction: " + this.driveTrain.getRightFrontMotor().getDirection());
+                this.driveTrain.getRobot().telemetry.addLine("Right Front Run Using Encoder: " + this.driveTrain.getRightFrontMotor().getMode());
+
+                this.driveTrain.getRobot().telemetry.addLine();
+
+                this.driveTrain.getRobot().telemetry.addData("Right Rear Currently at",  " at %7d", this.driveTrain.getRightRearMotor().getCurrentPosition());
+                this.driveTrain.getRobot().telemetry.addData("Right Rear  Motor Power: ", " %f", this.driveTrain.getRightRearMotor().getPower());
+                this.driveTrain.getRobot().telemetry.addLine("Right Rear  Direction: " + this.driveTrain.getRightRearMotor().getDirection());
+                this.driveTrain.getRobot().telemetry.addLine("Right RearRun Using Encoder: " + this.driveTrain.getRightRearMotor().getMode());
+                this.driveTrain.getRobot().telemetry.addData("Right Rear Target: ", "%7d", this.driveTrain.getRightRearMotor().getTargetPosition());
+
+                this.driveTrain.getRobot().telemetry.addLine();
+
+                this.driveTrain.getRobot().telemetry.addData("Left Rear Currently at",  " at %7d", this.driveTrain.getLeftRearMotor().getCurrentPosition());
+                this.driveTrain.getRobot().telemetry.addData("Left Rear  Motor Power: ", " %f", this.driveTrain.getLeftRearMotor().getPower());
+                this.driveTrain.getRobot().telemetry.addLine("Left Rear  Direction: " + this.driveTrain.getLeftRearMotor().getDirection());
+                this.driveTrain.getRobot().telemetry.addLine("Left Rear Run Using Encoder: " + this.driveTrain.getLeftRearMotor().getMode());
+                this.driveTrain.getRobot().telemetry.addData("Left Rear Target: ", "%7d", this.driveTrain.getLeftRearMotor().getTargetPosition());
+
+                this.driveTrain.getRobot().telemetry.addLine();
+
                 this.driveTrain.getRobot().telemetry.update();
             }
 
