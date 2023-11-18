@@ -106,6 +106,16 @@ public class PixelCatcher extends Component {
         }
     }
 
+    public void openLeftArm () {
+        this.leftServo.setPosition(this.config.leftArmServoOpenedPos);
+        this.leftArmPos = ArmPosition.OPENED;
+    }
+
+    public void closeLeftArm () {
+        this.leftServo.setPosition(this.config.leftArmServoClosedPos);
+        this.leftArmPos = ArmPosition.CLOSED;
+    }
+
     /**
      *
      */
@@ -121,5 +131,15 @@ public class PixelCatcher extends Component {
                 break;
         }
 
+    }
+
+    public void openRightArm () {
+        this.rightServo.setPosition(this.config.rightArmServoOpenedPos);
+        this.rightArmPos = ArmPosition.OPENED;
+    }
+
+    public void closeRightArm () {
+        this.rightServo.setPosition(this.config.rightArmServoClosedPos);
+        this.rightArmPos = ArmPosition.CLOSED;
     }
 }

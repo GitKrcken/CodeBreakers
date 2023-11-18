@@ -26,9 +26,9 @@ public class MecanumCodeBotConfig extends MecanumDriveTrainConfig {
 
         this.debug = false;
 
-        this.accelerationIncrement = 0.01;
+        this.accelerationIncrement = 0.03;
 
-        this.maxPower = 0.8;
+        this.maxPower = 0.7;
 
         this.leftFrontMotorDirection = DcMotor.Direction.REVERSE;
         this.rightFrontMotorDirection = DcMotor.Direction.FORWARD;
