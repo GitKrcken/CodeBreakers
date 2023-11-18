@@ -42,6 +42,7 @@ public class RedFarCodeBot extends AutoCodeBot {
 
         this.addCommand(new OneTimeSynchronousCommand() {
             public void runOnce(ICommand command) {
+                RedFarCodeBot.this.driveTrain.wait(10000);
                 RedFarCodeBot.this.driveTrain.forward(0.1, 0.2, 8, Units.Centimeters);
                 RedFarCodeBot.this.driveTrain.gyroTurnRight(0.1, 0.5, 90);
                 RedFarCodeBot.this.driveTrain.forward(0.1, 0.5, 227, Units.Centimeters);

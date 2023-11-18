@@ -43,6 +43,7 @@ public class BlueFarCodeBot extends AutoCodeBot {
 
         this.addCommand(new OneTimeSynchronousCommand() {
             public void runOnce(ICommand command) {
+                BlueFarCodeBot.this.driveTrain.wait(10000);
                 BlueFarCodeBot.this.driveTrain.forward(0.1, 0.2, 8, Units.Centimeters);
                 BlueFarCodeBot.this.driveTrain.gyroTurnLeft(0.1, 0.5, 90);
                 BlueFarCodeBot.this.driveTrain.forward(0.1, 0.5, 227, Units.Centimeters);
