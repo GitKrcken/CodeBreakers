@@ -1,22 +1,27 @@
 package org.firstinspires.ftc.library.drivetrain;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainBackwardsCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainDiagFrontLeftCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainDiagFrontRightCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainDiagRearLeftCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainDiagRearRightCommand;
+import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainForwardBySensorCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainForwardsCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainGyroFrontAxlePivotLeftCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainGyroFrontAxlePivotRightCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainGyroRearAxlePivotLeftCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainGyroRearAxlePivotRightCommand;
+import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainScanSidewaysLeftCommand;
+import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainScanSidewaysRightCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainSidewaysLeftCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainSidewaysRightCommand;
 import org.firstinspires.ftc.library.component.event.command_callback.CommandCallbackHandler;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainGyroTurnLeftCommand;
 import org.firstinspires.ftc.library.drivetrain.commands.DriveTrainGyroTurnRightCommand;
+import org.firstinspires.ftc.library.drivetrain.commands.GotoDegreesCommand;
 import org.firstinspires.ftc.library.utility.Direction;
 import org.firstinspires.ftc.library.utility.Units;
 
@@ -41,6 +46,19 @@ public class SimpleDriveTrain extends AbstractDriveTrain
     public void init ()
     {
         super.init();
+    }
+
+    /**
+     *
+     * @param direction
+     * @param startPower
+     * @param maxPower
+     * @param degrees
+     * @return
+     */
+    public SimpleDriveTrain gotoDegrees (Direction direction, double startPower, double maxPower, double degrees) {
+        this.addCommand(new GotoDegreesCommand(this, direction, startPower, maxPower, degrees));
+        return this;
     }
 
     /**
@@ -80,7 +98,7 @@ public class SimpleDriveTrain extends AbstractDriveTrain
     public SimpleDriveTrain diagFront (Direction direction, double startPower, double maxPower, double distance, Units units) {
 
         switch (direction) {
-            case Right:
+            case RIGHT:
                 return this.diagFrontRight(startPower, maxPower, distance, units);
             case LEFT:
                 return this.diagFrontLeft(startPower, maxPower, distance, units);
@@ -133,11 +151,17 @@ public class SimpleDriveTrain extends AbstractDriveTrain
 
     /**
      *
-     * @param startPower Between 0.01 and 1
-     * @param maxPower Between 0.01 and 1
-     * @param distance The distance to travel
-     * @param units The unit type for distance
+     * @param power
+     * @param sensor
+     * @param target
+     * @return
      */
+    public SimpleDriveTrain forwardBySensor (double power, DistanceSensor sensor, double target)
+    {
+        this.addCommand(new DriveTrainForwardBySensorCommand(this, power, sensor, target));
+        return this;
+    }
+
     public SimpleDriveTrain forward (double startPower, double maxPower, double distance, Units units)
     {
         this.addCommand(new DriveTrainForwardsCommand(this, startPower, maxPower, distance, units));
@@ -163,7 +187,7 @@ public class SimpleDriveTrain extends AbstractDriveTrain
     public SimpleDriveTrain gyroTurn (Direction direction, double startPower, double maxPower, double degrees)
     {
         switch (direction) {
-            case Right:
+            case RIGHT:
                 return this.gyroTurnRight(startPower, maxPower, degrees);
             case LEFT:
                 return this.gyroTurnLeft(startPower, maxPower, degrees);
@@ -210,7 +234,7 @@ public class SimpleDriveTrain extends AbstractDriveTrain
     public SimpleDriveTrain frontAxelPivot (Direction direction, double startPower, double maxPower, double degrees)
     {
         switch (direction) {
-            case Right:
+            case RIGHT:
                 return this.frontAxelPivotRight(startPower, maxPower, degrees);
             case LEFT:
                 return this.frontAxelPivotLeft(startPower, maxPower, degrees);
@@ -283,10 +307,40 @@ public class SimpleDriveTrain extends AbstractDriveTrain
     public SimpleDriveTrain sideways (Direction direction, double startPower, double maxPower, double distance, Units units) {
 
         switch (direction) {
-            case Right:
+            case RIGHT:
                 return this.sidewaysRight(startPower, maxPower, distance, units);
             case LEFT:
                 return this.sidewaysLeft(startPower, maxPower, distance, units);
+        }
+
+        return this;
+    }
+
+    /**
+     *
+     * @param direction
+     * @param startPower
+     * @param maxPower
+     * @param distance
+     * @param units
+     * @param sensor
+     * @param threshold
+     * @return
+     */
+    public SimpleDriveTrain scanSideways (
+            Direction direction,
+            double startPower,
+            double maxPower,
+            double distance,
+            Units units,
+            DistanceSensor sensor,
+            double threshold,
+            CommandCallbackHandler handler) {
+        switch (direction) {
+            case RIGHT:
+                return this.scanSidewaysRight(startPower, maxPower, distance, units, sensor, threshold, handler);
+            case LEFT:
+                return this.scanSidewaysLeft(startPower, maxPower, distance, units, sensor, threshold, handler);
         }
 
         return this;
@@ -306,6 +360,27 @@ public class SimpleDriveTrain extends AbstractDriveTrain
         return this;
     }
 
+
+    /**
+     *
+     * @param startPower
+     * @param maxPower
+     * @param distance
+     * @param units
+     * @param sensor
+     * @param threshold
+     * @param handler
+     * @return
+     */
+    public SimpleDriveTrain scanSidewaysLeft (double startPower, double maxPower, double distance, Units units, DistanceSensor sensor, double threshold, CommandCallbackHandler handler)
+    {
+        DriveTrainScanSidewaysLeftCommand command = new DriveTrainScanSidewaysLeftCommand(this, startPower, maxPower, distance, units, sensor, threshold);
+        command.addCallbackHandler(handler);
+
+        this.addCommand(command);
+        return this;
+    }
+
     /**
      *
      * @param startPower
@@ -317,6 +392,26 @@ public class SimpleDriveTrain extends AbstractDriveTrain
     public SimpleDriveTrain sidewaysRight (double startPower, double maxPower, double distance, Units units)
     {
         this.addCommand(new DriveTrainSidewaysRightCommand(this, startPower, maxPower, distance, units));
+        return this;
+    }
+
+    /**
+     *
+     * @param startPower
+     * @param maxPower
+     * @param distance
+     * @param units
+     * @param sensor
+     * @param threshold
+     * @param handler
+     * @return
+     */
+    public SimpleDriveTrain scanSidewaysRight (double startPower, double maxPower, double distance, Units units, DistanceSensor sensor, double threshold, CommandCallbackHandler handler)
+    {
+        DriveTrainScanSidewaysRightCommand command = new DriveTrainScanSidewaysRightCommand(this, startPower, maxPower, distance, units, sensor, threshold);
+        command.addCallbackHandler(handler);
+
+        this.addCommand(command);
         return this;
     }
 

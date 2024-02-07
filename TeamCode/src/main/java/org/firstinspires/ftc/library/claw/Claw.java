@@ -2,8 +2,12 @@ package org.firstinspires.ftc.library.claw;
 
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.library.rotator.Rotator;
 import org.firstinspires.ftc.library.boom.Boom;
+import org.firstinspires.ftc.library.claw.events.leftpincherclose.ClawLeftPincherCloseEvent;
+import org.firstinspires.ftc.library.claw.events.leftpincheropen.ClawLeftPincherOpenEvent;
+import org.firstinspires.ftc.library.claw.events.rightpincherclose.ClawRightPincherCloseEvent;
+import org.firstinspires.ftc.library.claw.events.rightpincheropen.ClawRightPincherOpenEvent;
+import org.firstinspires.ftc.library.rotator.Rotator;
 import org.firstinspires.ftc.library.component.Component;
 
 /**
@@ -49,6 +53,14 @@ public class Claw extends Component {
     private boolean isRightOpen = false;
 
     /**
+     */
+    private boolean rotatedRight = false;
+
+    /**
+     */
+    private boolean rotatedLeft = false;
+
+    /**
      * Constructor
      *
      */
@@ -59,6 +71,8 @@ public class Claw extends Component {
         this.clawBoom = new Boom(config.clawBoomConfig);
         this.clawRotator = new Rotator(config.clawRotatorConfig);
     }
+
+    protected double stashedClawBoomPosition;
 
     /**
      *
@@ -95,6 +109,34 @@ public class Claw extends Component {
 
         this.addGp2_Right_Bumper_PressHandler(event -> {
             Claw.this.toggleRightClaw();
+        });
+
+        this.addGp2_Left_Trigger_DownHandler(event -> {
+            if (Claw.this.rotatedLeft) {
+                Claw.this.rotatedLeft = false;
+                Claw.this.clawRotator.gotoPosition(Claw.this.config.clawRotatorConfig.homePosition, 1);
+                Claw.this.clawBoom.gotoPosition(Claw.this.stashedClawBoomPosition, 1);
+            }
+            else {
+                Claw.this.rotatedLeft = true;
+                Claw.this.stashedClawBoomPosition = Claw.this.clawBoom.getPosition();
+                Claw.this.clawRotator.gotoPosition(0.524, 1);
+                Claw.this.clawBoom.gotoPosition(0.616,1);
+            }
+        });
+
+        this.addGp2_Right_Trigger_DownHandler(event -> {
+            if (Claw.this.rotatedRight) {
+                Claw.this.rotatedRight = false;
+                Claw.this.clawRotator.gotoPosition(Claw.this.config.clawRotatorConfig.homePosition, 1);
+                Claw.this.clawBoom.gotoPosition(Claw.this.stashedClawBoomPosition, 1);
+            }
+            else {
+                Claw.this.rotatedRight = true;
+                Claw.this.stashedClawBoomPosition = Claw.this.clawBoom.getPosition();
+                Claw.this.clawRotator.gotoPosition(0.82, 1);
+                Claw.this.clawBoom.gotoPosition(0.616, 1);
+            }
         });
     }
 
@@ -145,8 +187,12 @@ public class Claw extends Component {
      */
     public void toggleLeftClaw () {
         this.isLeftOpen = !this.isLeftOpen;
-        double pos = this.isLeftOpen ? this.config.leftClawMaxPosition : this.config.leftClawMinPosition;
-        this.leftClaw.setPosition(pos);
+        if (this.isLeftOpen) {
+            this.openLeft();
+        }
+        else {
+            this.closeLeft();
+        }
     }
 
     /**
@@ -154,28 +200,51 @@ public class Claw extends Component {
      */
     public void toggleRightClaw () {
         this.isRightOpen = !this.isRightOpen;
-        double pos = this.isRightOpen ? this.config.rightClawMaxPosition : this.config.rightClawMinPosition;
-        this.rightClaw.setPosition(pos);
-
+        if (this.isRightOpen) {
+            this.openRight();
+        }
+        else {
+            this.closeRight();
+        }
     }
 
+    /**
+     *
+     */
     public void closeLeft () {
         this.leftClaw.setPosition(this.config.leftClawMinPosition);
         this.isLeftOpen = false;
+
+        this.fireEvent(new ClawLeftPincherCloseEvent());
     }
 
+    /**
+     *
+     */
     public void closeRight () {
         this.rightClaw.setPosition(this.config.rightClawMinPosition);
         this.isRightOpen = false;
+
+        this.fireEvent(new ClawRightPincherCloseEvent());
     }
 
+    /**
+     *
+     */
     public void openLeft () {
         this.leftClaw.setPosition(this.config.leftClawMaxPosition);
         this.isLeftOpen = true;
+
+        this.fireEvent(new ClawLeftPincherOpenEvent());
     }
 
+    /**
+     *
+     */
     public void openRight () {
         this.rightClaw.setPosition(this.config.rightClawMaxPosition);
         this.isRightOpen = true;
+
+        this.fireEvent(new ClawRightPincherOpenEvent());
     }
 }

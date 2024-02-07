@@ -3,7 +3,7 @@ package org.firstinspires.ftc.library.boom;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.library.IsaacBot;
-import org.firstinspires.ftc.library.Control;
+import org.firstinspires.ftc.library.utility.Control;
 
 /**
  *
@@ -32,9 +32,9 @@ public class BoomConfig {
 
     /**
      */
-    public Control controllerInputMethod;
+    public Control controllerInputMethod = Control.NONE;
 
-    public Control controllerInputMethod2;
+    public Control controllerInputMethod2 = Control.NONE;
 
     /**
      */

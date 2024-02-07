@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.library.claw;
 
 import org.firstinspires.ftc.library.IsaacBot;
-import org.firstinspires.ftc.library.rotator.RotatorConfiguration;
 import org.firstinspires.ftc.library.boom.BoomConfig;
+import org.firstinspires.ftc.library.rotator.RotatorConfig;
+
 
 public class ClawConfig {
 
@@ -10,7 +11,7 @@ public class ClawConfig {
 
     public BoomConfig clawBoomConfig;
 
-    public RotatorConfiguration clawRotatorConfig;
+    public RotatorConfig clawRotatorConfig;
 
     public double rightClawMaxPosition;
     public double rightClawMinPosition;

@@ -3,6 +3,11 @@ package org.firstinspires.ftc.library;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import org.firstinspires.ftc.library.component.event.g1_a_press.Gp1_A_PressHandler;
+import org.firstinspires.ftc.library.component.event.g1_b_press.Gp1_B_PressHandler;
+import org.firstinspires.ftc.library.component.event.g2_x_press.Gp1_X_PressHandler;
+import org.firstinspires.ftc.library.component.event.g2_y_press.Gp1_Y_PressHandler;
+import org.firstinspires.ftc.library.component.event.gp1_dpad_down_press.Gp1_Dpad_Down_PressHandler;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.library.component.IComponent;
@@ -148,6 +153,14 @@ public abstract class  IsaacBot extends LinearOpMode implements IComponent
         this.robotComponent.addCommand(command);
     }
 
+    public HandlerRegistration addGp1_A_PressHandler (Gp1_A_PressHandler handler) {
+        return this.robotComponent.addGp1_A_PressHandler(handler);
+    }
+
+    public HandlerRegistration addGp1_B_PressHandler (Gp1_B_PressHandler handler) {
+        return this.robotComponent.addGp1_B_PressHandler(handler);
+    }
+
     public HandlerRegistration addGp2_A_PressHandler (Gp2_A_PressHandler handler) {
         return this.robotComponent.addGp2_A_PressHandler(handler);
     }
@@ -162,6 +175,14 @@ public abstract class  IsaacBot extends LinearOpMode implements IComponent
 
     public HandlerRegistration addGp2_Y_PressHandler (Gp2_Y_PressHandler handler) {
         return this.robotComponent.addGp2_Y_PressHandler(handler);
+    }
+
+    public HandlerRegistration addGp1_X_PressHandler (Gp1_X_PressHandler handler) {
+        return this.robotComponent.addGp1_X_PressHandler(handler);
+    }
+
+    public HandlerRegistration addGp1_Y_PressHandler (Gp1_Y_PressHandler handler) {
+        return this.robotComponent.addGp1_Y_PressHandler(handler);
     }
     //endregion
 
@@ -190,6 +211,12 @@ public abstract class  IsaacBot extends LinearOpMode implements IComponent
 
     public HandlerRegistration addGp2_Dpad_Down_DownHandler (Gp2_Dpad_Down_DownHandler handler) {
         return this.robotComponent.addGp2_Dpad_Down_DownHandler(handler);
+    }
+
+    //-----------------------------------------------------------------------------------------
+
+    public HandlerRegistration addGp1_Dpad_Down_PressHandler (Gp1_Dpad_Down_PressHandler handler) {
+        return this.robotComponent.addGp1_Dpad_Down_PressHandler(handler);
     }
 
     /**

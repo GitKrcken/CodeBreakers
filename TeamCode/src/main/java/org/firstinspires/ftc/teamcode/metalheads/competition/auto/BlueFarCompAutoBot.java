@@ -20,6 +20,9 @@ public class BlueFarCompAutoBot extends CompAutoBot {
         super();
 
         this.robotAutoConfig.startingTrussDirection = Direction.LEFT;
+        this.robotAutoConfig.routine = Routine.FAR;
+
+        this.robotAutoConfig.distanceUnderTruss_oppositeTruss = 120;
     }
 
     /**
@@ -43,8 +46,10 @@ public class BlueFarCompAutoBot extends CompAutoBot {
 
     }
 
+    /**
+     *
+     */
     public void run () {
         super.run();
     }
-
 }

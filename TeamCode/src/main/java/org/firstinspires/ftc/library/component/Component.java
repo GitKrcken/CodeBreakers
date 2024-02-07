@@ -3,8 +3,23 @@ package org.firstinspires.ftc.library.component;
 import org.firstinspires.ftc.library.IsaacBot;
 import org.firstinspires.ftc.library.component.command.CommandQueue;
 import org.firstinspires.ftc.library.component.command.ICommand;
+import org.firstinspires.ftc.library.component.event.Event;
 import org.firstinspires.ftc.library.component.event.EventBus;
+import org.firstinspires.ftc.library.component.event.EventHandler;
+import org.firstinspires.ftc.library.component.event.EventType;
 import org.firstinspires.ftc.library.component.event.HandlerRegistration;
+import org.firstinspires.ftc.library.component.event.g1_a_press.Gp1_A_PressEvent;
+import org.firstinspires.ftc.library.component.event.g1_a_press.Gp1_A_PressHandler;
+import org.firstinspires.ftc.library.component.event.g1_b_press.Gp1_B_PressEvent;
+import org.firstinspires.ftc.library.component.event.g1_b_press.Gp1_B_PressHandler;
+import org.firstinspires.ftc.library.component.event.g2_x_press.Gp1_X_PressEvent;
+import org.firstinspires.ftc.library.component.event.g2_x_press.Gp1_X_PressHandler;
+import org.firstinspires.ftc.library.component.event.g2_y_press.Gp1_Y_PressEvent;
+import org.firstinspires.ftc.library.component.event.g2_y_press.Gp1_Y_PressHandler;
+import org.firstinspires.ftc.library.component.event.gp1_dpad_down_down.Gp1_Dpad_Down_DownEvent;
+import org.firstinspires.ftc.library.component.event.gp1_dpad_down_down.Gp1_Dpad_Down_DownHandler;
+import org.firstinspires.ftc.library.component.event.gp1_dpad_down_press.Gp1_Dpad_Down_PressEvent;
+import org.firstinspires.ftc.library.component.event.gp1_dpad_down_press.Gp1_Dpad_Down_PressHandler;
 import org.firstinspires.ftc.library.component.event.gp1_left_trigger_down.Gp1_Left_Trigger_DownEvent;
 import org.firstinspires.ftc.library.component.event.gp1_left_trigger_down.Gp1_Left_Trigger_DownHandler;
 import org.firstinspires.ftc.library.component.event.gp1_right_trigger_down.Gp1_Right_Trigger_DownEvent;
@@ -25,12 +40,16 @@ import org.firstinspires.ftc.library.component.event.gp2_left_stick_x.Gp2_LeftSt
 import org.firstinspires.ftc.library.component.event.gp2_left_stick_x.Gp2_LeftStickXHandler;
 import org.firstinspires.ftc.library.component.event.gp2_left_stick_y.Gp2_LeftStickYEvent;
 import org.firstinspires.ftc.library.component.event.gp2_left_stick_y.Gp2_LeftStickYHandler;
+import org.firstinspires.ftc.library.component.event.gp2_left_trigger_down.Gp2_Left_Trigger_DownEvent;
+import org.firstinspires.ftc.library.component.event.gp2_left_trigger_down.Gp2_Left_Trigger_DownHandler;
 import org.firstinspires.ftc.library.component.event.gp2_right_bumper_press.Gp2_Right_Bumper_PressEvent;
 import org.firstinspires.ftc.library.component.event.gp2_right_bumper_press.Gp2_Right_Bumper_PressHandler;
 import org.firstinspires.ftc.library.component.event.gp2_right_stick_x.Gp2_RightStickXEvent;
 import org.firstinspires.ftc.library.component.event.gp2_right_stick_x.Gp2_RightStickXHandler;
 import org.firstinspires.ftc.library.component.event.gp2_right_stick_y.Gp2_RightStickYEvent;
 import org.firstinspires.ftc.library.component.event.gp2_right_stick_y.Gp2_RightStickYHandler;
+import org.firstinspires.ftc.library.component.event.gp2_right_trigger_down.Gp2_Right_Trigger_DownEvent;
+import org.firstinspires.ftc.library.component.event.gp2_right_trigger_down.Gp2_Right_Trigger_DownHandler;
 import org.firstinspires.ftc.library.component.event.gp2_y_press.Gp2_Y_PressEvent;
 import org.firstinspires.ftc.library.component.event.gp2_y_press.Gp2_Y_PressHandler;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -79,6 +98,14 @@ public abstract class Component implements IComponent {
 
     /**
      *
+     * @return HandlerRegistration
+     */
+    public <H extends EventHandler> HandlerRegistration addHandler (EventType<H> type, H handler) {
+        return EventBus.getInstance().addHandler(type, handler);
+    }
+
+    /**
+     *
      * @param handler
      * @return
      */
@@ -93,6 +120,24 @@ public abstract class Component implements IComponent {
      */
     public HandlerRegistration addGp1_Right_Trigger_DownHandler (Gp1_Right_Trigger_DownHandler handler) {
         return EventBus.getInstance().addHandler(Gp1_Right_Trigger_DownEvent.TYPE, handler);
+    }
+
+    /**
+     *
+     * @param handler
+     * @return
+     */
+    public HandlerRegistration addGp2_Left_Trigger_DownHandler (Gp2_Left_Trigger_DownHandler handler) {
+        return EventBus.getInstance().addHandler(Gp2_Left_Trigger_DownEvent.TYPE, handler);
+    }
+
+    /**
+     *
+     * @param handler
+     * @return
+     */
+    public HandlerRegistration addGp2_Right_Trigger_DownHandler (Gp2_Right_Trigger_DownHandler handler) {
+        return EventBus.getInstance().addHandler(Gp2_Right_Trigger_DownEvent.TYPE, handler);
     }
 
     //region Gamepad 2 A, B, X, Y Handlers
@@ -118,6 +163,29 @@ public abstract class Component implements IComponent {
     }
     //endregion
 
+    //region Gamepad 1 A, B, X, Y Handlers
+    /**
+     *
+     * @param handler
+     * @return
+     */
+    public HandlerRegistration addGp1_A_PressHandler (Gp1_A_PressHandler handler) {
+        return EventBus.getInstance().addHandler(Gp1_A_PressEvent.TYPE, handler);
+    }
+
+    public HandlerRegistration addGp1_B_PressHandler (Gp1_B_PressHandler handler) {
+        return EventBus.getInstance().addHandler(Gp1_B_PressEvent.TYPE, handler);
+    }
+
+    public HandlerRegistration addGp1_X_PressHandler (Gp1_X_PressHandler handler) {
+        return EventBus.getInstance().addHandler(Gp1_X_PressEvent.TYPE, handler);
+    }
+
+    public HandlerRegistration addGp1_Y_PressHandler (Gp1_Y_PressHandler handler) {
+        return EventBus.getInstance().addHandler(Gp1_Y_PressEvent.TYPE, handler);
+    }
+    //endregion
+
     public HandlerRegistration addGp2_Left_Bumper_PressHandler (Gp2_Left_Bumper_PressHandler handler) {
         return EventBus.getInstance().addHandler(Gp2_Left_Bumper_PressEvent.TYPE, handler);
     }
@@ -126,8 +194,16 @@ public abstract class Component implements IComponent {
         return EventBus.getInstance().addHandler(Gp2_Right_Bumper_PressEvent.TYPE, handler);
     }
 
-
     //-----------------------------------------------------------------------------------------
+    // Dpad
+    //-----------------------------------------------------------------------------------------
+    public HandlerRegistration addGp1_Dpad_Down_DownHandler (Gp1_Dpad_Down_DownHandler handler) {
+        return EventBus.getInstance().addHandler(Gp1_Dpad_Down_DownEvent.TYPE, handler);
+    }
+
+    public HandlerRegistration addGp1_Dpad_Down_PressHandler (Gp1_Dpad_Down_PressHandler handler) {
+        return EventBus.getInstance().addHandler(Gp1_Dpad_Down_PressEvent.TYPE, handler);
+    }
 
     public HandlerRegistration addGp2_Dpad_Left_DownHandler (Gp2_Dpad_Left_DownHandler handler) {
         return EventBus.getInstance().addHandler(Gp2_Dpad_Left_DownEvent.TYPE, handler);
@@ -144,6 +220,7 @@ public abstract class Component implements IComponent {
     public HandlerRegistration addGp2_Dpad_Down_DownHandler (Gp2_Dpad_Down_DownHandler handler) {
         return EventBus.getInstance().addHandler(Gp2_Dpad_Down_DownEvent.TYPE, handler);
     }
+
 
     /**
      *
@@ -187,6 +264,14 @@ public abstract class Component implements IComponent {
      */
     public IsaacBot getRobot () {
         return this.robot;
+    }
+
+    /**
+     *
+     * @param event
+     */
+    public void fireEvent (Event<?> event) {
+        EventBus.getInstance().fireEvent(event);
     }
 
     /**

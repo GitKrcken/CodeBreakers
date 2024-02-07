@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.library.pixelcatcher;
 
-import org.firstinspires.ftc.library.Control;
+import org.firstinspires.ftc.library.utility.Control;
 import org.firstinspires.ftc.library.IsaacBot;
 
 /**
@@ -36,7 +36,7 @@ public class PixelCatcherConfig {
     /**
      *
      */
-    public PixelCatcher.ArmPosition leftArmIntiPos = PixelCatcher.ArmPosition.CLOSED;
+    public PixelCatcher.ArmPosition leftArmInitPos = PixelCatcher.ArmPosition.CLOSED;
 
     /**
      */
@@ -65,9 +65,17 @@ public class PixelCatcherConfig {
     /**
      *
      */
-    public PixelCatcher.ArmPosition rightArmIntiPos = PixelCatcher.ArmPosition.CLOSED;
+    public PixelCatcher.ArmPosition rightArmInitPos = PixelCatcher.ArmPosition.CLOSED;
 
     /**
      */
     public Control rightArmToggle = Control.Gp1_RightTrigger_Down;
+
+    /**
+     */
+    public String leftPixelSensorName;
+
+    /**
+     */
+    public String rightPixelSensorName;
 }

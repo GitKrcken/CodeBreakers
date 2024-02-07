@@ -21,15 +21,15 @@ public class MecanumDriveCompConfig  extends MecanumDriveTrainConfig {
         this.rightFrontDeviceName  = "rightFrontDrive";
         this.rightRearDeviceName   = "rightRearDrive";
         this.leftRearDeviceName    = "leftRearDrive";
-        this.accelerationIncrement = 0.02;
-        this.maxPower = 0.65;
+        this.accelerationIncrement = 0.04;
+        this.maxPower = 0.8;
         this.yawOffset = -90;
-        this.incrementalDeceleration = true;
+        this.incrementalDeceleration = false;
         this.leftFrontMotorDirection  = DcMotorSimple.Direction.REVERSE;
         this.rightFrontMotorDirection = DcMotorSimple.Direction.FORWARD;
         this.leftRearMotorDirection  =  DcMotorSimple.Direction.REVERSE;
         this.rightRearMotorDirection  = DcMotorSimple.Direction.FORWARD;
-        this.imuName = "imu";
+        this.imuName = "imu2";
         this.debug = false;
     }
 }
