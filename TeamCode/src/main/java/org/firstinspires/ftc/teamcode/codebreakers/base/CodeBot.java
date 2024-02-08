@@ -32,6 +32,9 @@ public class CodeBot extends IsaacBot {
 
         this.pixelCatcher = new PixelCatcher(this.pixelCatcherConfig);
         this.pixelCatcher.init();
+
+        // this is where you can put "normal" bot code that
+        // would happen in the constructor
     }
 
     /**
@@ -39,6 +42,9 @@ public class CodeBot extends IsaacBot {
      */
     public void go () {
         super.go();
+
+        // this is where you can put "normal" bot code that is
+        // BEFORE 'waitForStart'
     }
 
     /**
@@ -46,6 +52,9 @@ public class CodeBot extends IsaacBot {
      */
     public void run () {
         super.run();
+
+        // this is where you can put "normal" bot code that is
+        // AFTER 'waitForStart'
     }
 
 }

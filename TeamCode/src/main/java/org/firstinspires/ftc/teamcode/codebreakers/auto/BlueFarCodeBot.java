@@ -44,10 +44,20 @@ public class BlueFarCodeBot extends AutoCodeBot {
     public void go () {
 
         this.addCommand(new OneTimeSynchronousCommand() {
-            public void runOnce(ICommand command) {
+            public void runOnce(ICommand outerCommand) {
                 //BlueFarCodeBot.this.driveTrain.wait(10000); // give other robot time, maybe not needed when doing purple pixel autonomous
-                BlueFarCodeBot.this.driveTrain.forward(0.2, 0.5, 40, Units.Centimeters);
+                BlueFarCodeBot.this.driveTrain.forward(0.2, 0.5, 53, Units.Centimeters);
+                BlueFarCodeBot.this.driveTrain.wait(0, new CommandCallbackAdapter(this){
+                    public void onSuccess(CommandSuccessEvent successEvent) {
+                        this.command.markAsCompleted();
+                        outerCommand.markAsCompleted();
+                    }
+                });
+            }
+        });
 
+        this.addCommand(new OneTimeSynchronousCommand() {
+            public void runOnce(ICommand command) {
                 BlueFarCodeBot.this.ping(new PingHandler() {
                     @Override
                     public void onPing(PingEvent event) {
@@ -56,19 +66,73 @@ public class BlueFarCodeBot extends AutoCodeBot {
                         BlueFarCodeBot.this.telemetry.update();
 
                         command.markAsCompleted();
+
+                        if (event.getDistance() < 35){
+                            BlueFarCodeBot.this.placePurplePixelForwards();
+                        }
                     }
                 });
+            }
+        });
 
-                //BlueFarCodeBot.this.driveTrain.gyroTurnLeft(0.1, 0.5, 90);
-                //BlueFarCodeBot.this.driveTrain.forward(0.1, 0.5, 227, Units.Centimeters);
+    }
+
+    protected void placePurplePixelForwards()
+    {
+        this.addCommand(new OneTimeSynchronousCommand() {
+            public void runOnce(ICommand outerCommand) {
+                BlueFarCodeBot.this.driveTrain.forward(0.2, 0.2, 21, Units.Centimeters);
+                BlueFarCodeBot.this.driveTrain.wait(0, new CommandCallbackAdapter(this){
+                    public void onSuccess(CommandSuccessEvent successEvent) {
+                        this.command.markAsCompleted();
+                        outerCommand.markAsCompleted();
+                    }
+                });
+            }
+        });
+
+        this.addCommand(new OneTimeSynchronousCommand() {
+            public void runOnce(ICommand outerCommand) {
+                BlueFarCodeBot.this.pixelCatcher.openLeftArm();
+                BlueFarCodeBot.this.driveTrain.wait(1000)
+                        .back(0.2, 0.2, 21, Units.Centimeters)
+                        .wait(0, new CommandCallbackAdapter(this) {
+                            public void onSuccess(CommandSuccessEvent successEvent) {
+                                command.markAsCompleted();
+                                //AutoCodeBot.this.finish();
+                            }
+                        });
+            }
+        });
+
+        this.addCommand(new OneTimeSynchronousCommand() {
+            public void runOnce(ICommand outerCommand) {
+                BlueFarCodeBot.this.pixelCatcher.closeLeftArm();
+                BlueFarCodeBot.this.driveTrain.wait(0)
+                        .back(0.2, 0.5, 43, Units.Centimeters)
+                        .wait(0, new CommandCallbackAdapter(this) {
+                            public void onSuccess(CommandSuccessEvent successEvent) {
+                                command.markAsCompleted();
+                                //AutoCodeBot.this.finish();
+                            }
+                        });
+            }
+        });
+
+//        this.addCommand(new OneTimeSynchronousCommand() {
+//            public void runOnce(ICommand command) {
+//                BlueFarCodeBot.this.driveTrain.back(0.2, 0.2, 21, Units.Centimeters);
+//                BlueFarCodeBot.this.driveTrain.back(0.2, 0.5, 43, Units.Centimeters);
 //                BlueFarCodeBot.this.driveTrain.wait(0, new CommandCallbackAdapter(this){
 //                    public void onSuccess(CommandSuccessEvent successEvent) {
 //                        this.command.markAsCompleted();
-//                        BlueFarCodeBot.this.dropPixels();
+//
+//                        telemetry.addLine("HERE");
+//                        telemetry.update();
 //                    }
 //                });
-            }
-        });
+//            }
+//        });
 
     }
 
