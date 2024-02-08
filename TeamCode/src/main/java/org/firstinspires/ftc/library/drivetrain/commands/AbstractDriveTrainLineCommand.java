@@ -81,7 +81,7 @@ public abstract class AbstractDriveTrainLineCommand extends AbstractSynchronousC
         {
             int currentPosition = this.driveTrain.getLeftFrontMotor().getCurrentPosition();
 
-            if (this.driveTrain.getConfig().debug = true) {
+            if (this.driveTrain.getConfig().debug == true) {
                 this.driveTrain.getRobot().telemetry.addData("Running to",  " %7d", tics);
 
                 this.driveTrain.getRobot().telemetry.addData("Left Front Currently at",  " at %7d", this.driveTrain.getLeftFrontMotor().getCurrentPosition());

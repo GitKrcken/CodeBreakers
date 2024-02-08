@@ -21,7 +21,7 @@ public class PixelCatcherCompConfig extends PixelCatcherConfig {
 
         this.leftArmServoClosedPos = 1;
 
-        this.leftArmServoInitPos = 0;
+        //this.leftArmServoInitPos = 0;
 
         this.leftArmInitPos = PixelCatcher.ArmPosition.OPENED;
 
@@ -35,7 +35,7 @@ public class PixelCatcherCompConfig extends PixelCatcherConfig {
 
         this.rightArmServoClosedPos = 1;
 
-        this.rightArmServoInitPos = 0;
+        //this.rightArmServoInitPos = 0;
 
         this.rightArmInitPos = PixelCatcher.ArmPosition.OPENED;
 

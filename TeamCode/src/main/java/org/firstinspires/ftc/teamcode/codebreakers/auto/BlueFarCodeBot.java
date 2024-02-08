@@ -7,6 +7,8 @@ import org.firstinspires.ftc.library.component.command.ICommand;
 import org.firstinspires.ftc.library.component.command.OneTimeSynchronousCommand;
 import org.firstinspires.ftc.library.component.event.command_callback.CommandCallbackAdapter;
 import org.firstinspires.ftc.library.component.event.command_callback.CommandSuccessEvent;
+import org.firstinspires.ftc.library.component.event.ping.PingEvent;
+import org.firstinspires.ftc.library.component.event.ping.PingHandler;
 import org.firstinspires.ftc.library.utility.Units;
 import org.firstinspires.ftc.teamcode.codebreakers.base.AutoCodeBot;
 
@@ -43,16 +45,28 @@ public class BlueFarCodeBot extends AutoCodeBot {
 
         this.addCommand(new OneTimeSynchronousCommand() {
             public void runOnce(ICommand command) {
-                BlueFarCodeBot.this.driveTrain.wait(10000);
-                BlueFarCodeBot.this.driveTrain.forward(0.1, 0.2, 8, Units.Centimeters);
-                BlueFarCodeBot.this.driveTrain.gyroTurnLeft(0.1, 0.5, 90);
-                BlueFarCodeBot.this.driveTrain.forward(0.1, 0.5, 227, Units.Centimeters);
-                BlueFarCodeBot.this.driveTrain.wait(0, new CommandCallbackAdapter(this){
-                    public void onSuccess(CommandSuccessEvent successEvent) {
-                        this.command.markAsCompleted();
-                        BlueFarCodeBot.this.dropPixels();
+                //BlueFarCodeBot.this.driveTrain.wait(10000); // give other robot time, maybe not needed when doing purple pixel autonomous
+                BlueFarCodeBot.this.driveTrain.forward(0.2, 0.5, 40, Units.Centimeters);
+
+                BlueFarCodeBot.this.ping(new PingHandler() {
+                    @Override
+                    public void onPing(PingEvent event) {
+
+                        BlueFarCodeBot.this.telemetry.addData("Ping Distance: ", "%2f", event.getDistance());
+                        BlueFarCodeBot.this.telemetry.update();
+
+                        command.markAsCompleted();
                     }
                 });
+
+                //BlueFarCodeBot.this.driveTrain.gyroTurnLeft(0.1, 0.5, 90);
+                //BlueFarCodeBot.this.driveTrain.forward(0.1, 0.5, 227, Units.Centimeters);
+//                BlueFarCodeBot.this.driveTrain.wait(0, new CommandCallbackAdapter(this){
+//                    public void onSuccess(CommandSuccessEvent successEvent) {
+//                        this.command.markAsCompleted();
+//                        BlueFarCodeBot.this.dropPixels();
+//                    }
+//                });
             }
         });
 

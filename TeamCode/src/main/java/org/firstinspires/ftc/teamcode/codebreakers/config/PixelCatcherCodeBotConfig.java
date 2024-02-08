@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.codebreakers.config;
 
-import org.firstinspires.ftc.library.Control;
+import org.firstinspires.ftc.library.utility.Control;
 import org.firstinspires.ftc.library.pixelcatcher.PixelCatcher;
 import org.firstinspires.ftc.library.pixelcatcher.PixelCatcherConfig;
 
@@ -12,9 +12,9 @@ public class PixelCatcherCodeBotConfig extends PixelCatcherConfig {
 
         this.leftArmServoClosedPos = 0.164;
 
-        this.leftArmServoInitPos = 0.164;
+        //this.leftArmServoInitPos = 0.164;
 
-        this.leftArmIntiPos = PixelCatcher.ArmPosition.CLOSED;
+        //this.leftArmIntiPos = PixelCatcher.ArmPosition.CLOSED;
 
         this.leftArmToggle = Control.Gp1_LeftTrigger_Down;
 
@@ -24,9 +24,9 @@ public class PixelCatcherCodeBotConfig extends PixelCatcherConfig {
 
         this.rightArmServoClosedPos = 0.763;
 
-        this.rightArmServoInitPos = 0.763;
+        //this.rightArmServoInitPos = 0.763;
 
-        this.rightArmIntiPos = PixelCatcher.ArmPosition.CLOSED;
+        //this.rightArmIntiPos = PixelCatcher.ArmPosition.CLOSED;
 
         this.rightArmToggle = Control.Gp1_RightTrigger_Down;
     }

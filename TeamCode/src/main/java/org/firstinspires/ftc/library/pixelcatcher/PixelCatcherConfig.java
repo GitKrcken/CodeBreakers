@@ -31,7 +31,7 @@ public class PixelCatcherConfig {
     /**
      *
      */
-    public double leftArmServoInitPos;
+    //public double leftArmServoInitPos;
 
     /**
      *
@@ -60,7 +60,7 @@ public class PixelCatcherConfig {
     /**
      *
      */
-    public double rightArmServoInitPos;
+    //public double rightArmServoInitPos;
 
     /**
      *

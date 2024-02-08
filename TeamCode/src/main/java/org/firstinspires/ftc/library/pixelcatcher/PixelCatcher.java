@@ -49,15 +49,6 @@ public class PixelCatcher extends Component {
     private ArmPosition rightArmPos;
 
     /**
-     */
-    private DistanceSensor leftPixelSensor;
-
-    /**
-     *
-     */
-    private DistanceSensor rightPixelSensor;
-
-    /**
      * Constructor
      *
      * @param config
@@ -80,8 +71,8 @@ public class PixelCatcher extends Component {
         leftServo.resetDeviceConfigurationForOpMode();
         rightServo.resetDeviceConfigurationForOpMode();
 
-        this.leftServo.setPosition(this.config.leftArmServoInitPos);
-        this.rightServo.setPosition(this.config.rightArmServoInitPos);
+        //this.leftServo.setPosition(this.config.leftArmServoInitPos);
+        //this.rightServo.setPosition(this.config.rightArmServoInitPos);
 
         this.leftArmPos = this.config.leftArmInitPos;
         this.rightArmPos = this.config.rightArmInitPos;
@@ -94,8 +85,8 @@ public class PixelCatcher extends Component {
             this.addGp1_Right_Trigger_DownHandler(event -> PixelCatcher.this.toggleRightArm());
         }
 
-        this.leftPixelSensor = this.robot.hardwareMap.get(DistanceSensor.class, this.config.leftPixelSensorName);
-        this.rightPixelSensor = this.robot.hardwareMap.get(DistanceSensor.class, this.config.rightPixelSensorName);
+//        this.leftPixelSensor = this.robot.hardwareMap.get(DistanceSensor.class, this.config.leftPixelSensorName);
+//        this.rightPixelSensor = this.robot.hardwareMap.get(DistanceSensor.class, this.config.rightPixelSensorName);
     }
 
     /**
@@ -104,11 +95,11 @@ public class PixelCatcher extends Component {
     public void run () {
         super.run();
 
-        LeftPixelPingEvent leftPixelPingEvent = new LeftPixelPingEvent(leftPixelSensor.getDistance(DistanceUnit.MM), this.getLeftArmPosition());
-        RightPixelPingEvent rightPixelPingEvent = new RightPixelPingEvent(rightPixelSensor.getDistance(DistanceUnit.MM), this.getRightArmPosition());
+        //LeftPixelPingEvent leftPixelPingEvent = new LeftPixelPingEvent(leftPixelSensor.getDistance(DistanceUnit.MM), this.getLeftArmPosition());
+        //RightPixelPingEvent rightPixelPingEvent = new RightPixelPingEvent(rightPixelSensor.getDistance(DistanceUnit.MM), this.getRightArmPosition());
 
-        this.fireEvent(leftPixelPingEvent);
-        this.fireEvent(rightPixelPingEvent);
+        //this.fireEvent(leftPixelPingEvent);
+        //this.fireEvent(rightPixelPingEvent);
     }
 
     /**

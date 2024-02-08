@@ -29,8 +29,9 @@ public class CompDriverBot extends CompBot {
 
         this.pixelCatcherConfig.leftArmInitPos = PixelCatcher.ArmPosition.CLOSED;
         this.pixelCatcherConfig.rightArmInitPos = PixelCatcher.ArmPosition.CLOSED;
-        this.pixelCatcherConfig.leftArmServoInitPos = 1;
-        this.pixelCatcherConfig.rightArmServoInitPos = 1;
+
+        //this.pixelCatcherConfig.leftArmServoInitPos = 1;
+        //this.pixelCatcherConfig.rightArmServoInitPos = 1;
 
         this.armPosition = ArmPosition.REST;
     }
