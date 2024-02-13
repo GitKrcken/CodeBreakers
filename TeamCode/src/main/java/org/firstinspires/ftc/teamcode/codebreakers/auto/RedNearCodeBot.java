@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.codebreakers.auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.library.component.command.ICommand;
 import org.firstinspires.ftc.library.component.command.OneTimeSynchronousCommand;
@@ -9,7 +8,6 @@ import org.firstinspires.ftc.library.component.event.command_callback.CommandCal
 import org.firstinspires.ftc.library.component.event.command_callback.CommandSuccessEvent;
 import org.firstinspires.ftc.library.utility.Units;
 import org.firstinspires.ftc.teamcode.codebreakers.base.AutoCodeBot;
-import org.firstinspires.ftc.teamcode.metalheads.competition.base.CompAutoBot;
 
 /**
  *
@@ -63,7 +61,7 @@ public class RedNearCodeBot extends AutoCodeBot {
     public void run () { super.run(); }
 
     protected void finish () {
-        this.driveTrain.gyroTurnLeft(0.1, 0.4, 90);
+        this.driveTrain.gyroTurnLeft(0.1, 0.4, 90, Units.Centimeters);
         this.driveTrain.back(0.1, 0.2, 8, Units.Centimeters);
     }
 

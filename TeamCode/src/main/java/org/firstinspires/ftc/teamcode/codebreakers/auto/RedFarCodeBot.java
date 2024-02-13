@@ -62,7 +62,7 @@ public class RedFarCodeBot extends AutoCodeBot {
     public void run () { super.run(); }
 
     protected void finish () {
-        this.driveTrain.gyroTurnLeft(0.1, 0.4, 90);
+        this.driveTrain.gyroTurnLeft(0.1, 0.4, 90, Units.Centimeters);
         this.driveTrain.back(0.1, 0.2, 8, Units.Centimeters);
     }
 

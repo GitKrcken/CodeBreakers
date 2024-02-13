@@ -118,6 +118,18 @@ public class BlueFarCodeBot extends AutoCodeBot {
                         });
             }
         });
+        this.addCommand(new OneTimeSynchronousCommand() {
+            public void runOnce(ICommand command) {
+                BlueFarCodeBot.this.driveTrain.gyroTurnLeft(0.1, 0.2, 85, Units.Centimeters);
+                BlueFarCodeBot.this.driveTrain.forward(0.1, 0.5, 225, Units.Centimeters);
+                BlueFarCodeBot.this.driveTrain.wait(0, new CommandCallbackAdapter(this){
+                    public void onSuccess(CommandSuccessEvent successEvent) {
+                        this.command.markAsCompleted();
+                        BlueFarCodeBot.this.dropPixels();
+                    }
+                });
+            }
+        });
 
 //        this.addCommand(new OneTimeSynchronousCommand() {
 //            public void runOnce(ICommand command) {

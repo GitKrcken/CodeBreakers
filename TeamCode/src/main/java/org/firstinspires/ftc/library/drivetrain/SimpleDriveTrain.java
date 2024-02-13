@@ -190,7 +190,7 @@ public class SimpleDriveTrain extends AbstractDriveTrain
             case RIGHT:
                 return this.gyroTurnRight(startPower, maxPower, degrees);
             case LEFT:
-                return this.gyroTurnLeft(startPower, maxPower, degrees);
+                return this.gyroTurnLeft(startPower, maxPower, degrees, Units.Centimeters);
         }
 
        return this;
@@ -198,13 +198,13 @@ public class SimpleDriveTrain extends AbstractDriveTrain
 
 
     /**
-     *
      * @param startPower
      * @param maxPower
      * @param degrees
+     * @param centimeters
      * @return
      */
-    public SimpleDriveTrain gyroTurnLeft (double startPower, double maxPower, double degrees)
+    public SimpleDriveTrain gyroTurnLeft (double startPower, double maxPower, double degrees, Units centimeters)
     {
         this.addCommand(new DriveTrainGyroTurnLeftCommand(this, startPower, maxPower, degrees));
         return this;
