@@ -11,7 +11,7 @@ import org.firstinspires.ftc.library.utility.Units;
  *
  */
 @Autonomous(name="RedNearCompAutoBot", group="Red")
-// @Disabled
+@Disabled
 public class RedNearCompAutoBot extends CompAutoBot {
 
     /**

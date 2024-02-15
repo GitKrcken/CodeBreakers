@@ -11,6 +11,7 @@ import org.firstinspires.ftc.library.pixelcatcher.events.leftarmclose.PixelCatch
 import org.firstinspires.ftc.library.pixelcatcher.events.leftarmopen.PixelCatcherLeftArmOpenEvent;
 import org.firstinspires.ftc.library.pixelcatcher.events.rightarmclose.PixelCatcherRightArmCloseEvent;
 import org.firstinspires.ftc.library.pixelcatcher.events.rightarmopen.PixelCatcherRightArmOpenEvent;
+import org.firstinspires.ftc.library.utility.Direction;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 /**
@@ -117,6 +118,34 @@ public class PixelCatcher extends Component {
                 this.leftArmPos = ArmPosition.CLOSED;
                 this.fireEvent(new PixelCatcherLeftArmCloseEvent());
                 break;
+        }
+    }
+
+    /**
+     *
+     * @param side
+     */
+    public void openArm (Direction side) {
+        if (side.equals(Direction.LEFT)) {
+            this.openLeftArm();
+        }
+        else
+        {
+            this.openRightArm();
+        }
+    }
+
+    /**
+     *
+     * @param side
+     */
+    public void closeArm (Direction side) {
+        if (side.equals(Direction.LEFT)) {
+            this.closeLeftArm();
+        }
+        else
+        {
+            this.closeRightArm();
         }
     }
 
